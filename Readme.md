@@ -1,51 +1,36 @@
-WordPress Hexagonal Architecture Example
-A plugin example built in a hexagonal way. This architectural approach enables future improvements, such as migrating the codebase to a framework (Symfony, Laravel...) and implementing next-level patterns like Domain-Driven Design (DDD) or CQRS after migration.
-It can also serve as a WordPress plugin boilerplate.
+# Wordpress hexagonal architecture example
 
-The purpose of this project is to demonstrate that hexagonal architecture can be applied in most environments — including WordPress — and that it simplifies testing, debugging, and modification in a clearer, more maintainable way, without unnecessary overengineering.
+A plugin example created in an hexagonal way. That way of work facilitates future improvements like migrate the code to 
+a framework (symfony, laravel...) and next iterations once is migrated like Domain Driven Design (DDD) or CQRS. It can be
+used as a wordpress plugin boilerplate.
 
-You can see the plugin on: WordPress Plugins directory
+The purpose of this project is to demonstrate the hexagonal architecture is able to be implemented in most of the places and
+facilitates testing, debugging and modification in a more visible way, like a wordpress plugin can provide, without overenginering inside it.
 
-It lacks:
-A Dependency Injector (dependencies are wired manually via a class that implements the PHP-FIG PSR-11 Container interface — although most modern frameworks have automatic dependency injection)
+You can see the plugin on: [WordPress Plugins directory](https://wordpress.org/plugins/hexagonal-reviews/)
 
-An Event Dispatcher (a class simulates it synchronously by implementing PHP-FIG PSR-14)
+## It has features like:
 
-A Database Migration Manager to handle plugin database updates (a very simple migration tool is included instead)
+* Docker ready for launching unit and acceptance tests on a wordpress container
+* Codeception for automated testing
+* Standalone selenium chrome with vnc capabilities to see what the BDD acceptance tests are doing
 
-But it has features like:
-Docker-ready setup for running unit and acceptance tests inside a WordPress container
+## How to develop locally
 
-Codeception for automated testing
-
-Standalone Selenium Chrome with VNC support to visually observe BDD acceptance tests in action
-
-How to develop locally
-Run:
-
-go
-Copy
-Edit
+Run: 
 make vendors
-Then install the project folder inside a WordPress installation as a normal plugin.
+ and then
 
-Run Automated Tests
-Run:
+Install the project folder inside a wordpress like a normal plugin
 
-go
-Copy
-Edit
+### Run Automated Tests
+
+Run: 
 make up
-to start the Docker testing environment, and then:
+ to start docker testing environment and then:
 
-go
-Copy
-Edit
 make unit
-to run unit tests
+ to run unit tests
 
-go
-Copy
-Edit
 make acceptance
-to run acceptance tests
+ to run acceptance tests
