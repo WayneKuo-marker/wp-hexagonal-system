@@ -1,0 +1,18 @@
+name: docker-compose-actions-workflow
+on: push
+jobs:
+  test:
+    name: Test the plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker compose Up
+        run: make
+      - name: Unit Tests
+        run: make unit
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
+      - name: Acceptance Tests
+        run: make acceptance
