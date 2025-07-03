@@ -1,62 +1,63 @@
-# Wordpress hexagonal architecture example
+WordPress Hexagonal Architecture Example
+This is an example of a WordPress plugin built using Hexagonal Architecture (also known as Ports and Adapters).
+This architecture simplifies future enhancements — such as migrating the codebase to a framework like Symfony or Laravel, or implementing more advanced patterns like Domain-Driven Design (DDD) or CQRS.
 
-A plugin example created in an hexagonal way. That way of work facilitates future improvements like migrate the code to 
-a framework (symfony, laravel...) and next iterations once is migrated like Domain Driven Design (DDD) or CQRS. It can be
-used as a wordpress plugin boilerplate.
+It serves as a WordPress plugin boilerplate, with a clear separation of concerns to make the code easier to test, debug, and extend — without overengineering.
 
-The purpose of this project is to demonstrate the hexagonal architecture is able to be implemented in most of the places and
-facilitates testing, debugging and modification in a more visible way, like a wordpress plugin can provide, without overenginering inside it.
+👉 View the plugin on the WordPress Plugin Directory
 
-You can see the plugin on: [WordPress Plugins directory](https://wordpress.org/plugins/hexagonal-reviews/)
+🚫 What's Missing
+This example intentionally avoids some advanced tooling to stay lightweight:
 
-## It lacks of:
+Dependency Injection Container
+Dependencies are wired manually through a class that implements the PSR-11 container interface.
+(Most modern frameworks use automatic dependency injection.)
 
-* A Dependency Injector (dependencies are applied manually by a class implementing the PHP FIG PSR-11 Container interface, nowadays most frameworks has it's own dependency autowire) 
-* An Event dispatcher (there's a class simulating it in a synced way implementing PHP FIG PSR-14)
-* Database Migration manager to manage plugin database updates (Added a very simple migration tool)
+Event Dispatcher
+A synchronous, simplified dispatcher is included to simulate PSR-14 events.
 
-## But has features like:
+Database Migration Manager
+Only a very basic migration tool is included to handle database updates.
 
-* Docker ready for launching unit and acceptance tests on a wordpress container
-* Codeception for automated testing
-* Standalone selenium chrome with vnc capabilities to see what the BDD acceptance tests are doing
+✅ Included Features
+Despite its simplicity, the project offers useful modern tooling:
 
-## How to develop locally
+🐳 Docker-ready — Easily launch WordPress for local testing (unit + acceptance)
 
-Run: ```make vendors``` and then
+🔁 Codeception — Pre-configured for automated test workflows
 
-Install the project folder inside a wordpress like a normal plugin
+👀 Selenium Chrome with VNC — Visually observe BDD acceptance tests running in real time
 
-### Run Automated Tests
+🛠️ Local Development
+To set up the plugin for local development:
 
-Run: ```make up``` to start docker testing environment and then:
+Install dependencies:
 
-```make unit``` to run unit tests
+bash
+Copy
+Edit
+make vendors
+Copy this project into the wp-content/plugins/ directory of your WordPress setup.
 
-```make acceptance``` to run acceptance tests
+Activate the plugin via the WordPress admin panel.
 
-You can see what happens on the browser accessing to the vnc on ```YOUR_LOCAL_DOCKER_IP_ENTRYPOINT:5900``` with password ```secret```
+🧪 Running Automated Tests
+Start the testing environment:
 
+bash
+Copy
+Edit
+make up
+Run unit tests:
 
-### Deployment
+bash
+Copy
+Edit
+make unit
+Run acceptance (BDD) tests:
 
-In order to prepare the plugin to publish, we remove the testing folder and dependencies to reduce the size of the plugin.
-
-Run: ```make plugin``` to generate a build folder with the reduced build inside.
-
-### (Experimental) Build with PHP 7.0, 7.4 or 8.0 compatibility
-
-Run: ```make plugin80``` to generate and use rector to build the code php 8.0 compatible. you can also downgrade to
-PHP 7.0 using ```make plugin70``` or upgrade to PHP 7.4 using ```make plugin74```
-
-### Coding Standards
-
-The project is using the Wordpress Coding Standards, but ignoring the file naming exceptions and cache warnings.
-
-Run: ```make cs``` to run the CodeSniffer and check your files 
-
-### About the plugin:
-
-The plugin permits you to append reviews on the posts using a shortcode, and manage it's publication on the admin area
-
-
+bash
+Copy
+Edit
+make acceptance
+update readme
