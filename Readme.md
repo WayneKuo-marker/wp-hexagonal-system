@@ -1,63 +1,51 @@
 WordPress Hexagonal Architecture Example
-This is an example of a WordPress plugin built using Hexagonal Architecture (also known as Ports and Adapters).
-This architecture simplifies future enhancements — such as migrating the codebase to a framework like Symfony or Laravel, or implementing more advanced patterns like Domain-Driven Design (DDD) or CQRS.
+A plugin example built in a hexagonal way. This architectural approach enables future improvements, such as migrating the codebase to a framework (Symfony, Laravel...) and implementing next-level patterns like Domain-Driven Design (DDD) or CQRS after migration.
+It can also serve as a WordPress plugin boilerplate.
 
-It serves as a WordPress plugin boilerplate, with a clear separation of concerns to make the code easier to test, debug, and extend — without overengineering.
+The purpose of this project is to demonstrate that hexagonal architecture can be applied in most environments — including WordPress — and that it simplifies testing, debugging, and modification in a clearer, more maintainable way, without unnecessary overengineering.
 
-👉 View the plugin on the WordPress Plugin Directory
+You can see the plugin on: WordPress Plugins directory
 
-🚫 What's Missing
-This example intentionally avoids some advanced tooling to stay lightweight:
+It lacks:
+A Dependency Injector (dependencies are wired manually via a class that implements the PHP-FIG PSR-11 Container interface — although most modern frameworks have automatic dependency injection)
 
-Dependency Injection Container
-Dependencies are wired manually through a class that implements the PSR-11 container interface.
-(Most modern frameworks use automatic dependency injection.)
+An Event Dispatcher (a class simulates it synchronously by implementing PHP-FIG PSR-14)
 
-Event Dispatcher
-A synchronous, simplified dispatcher is included to simulate PSR-14 events.
+A Database Migration Manager to handle plugin database updates (a very simple migration tool is included instead)
 
-Database Migration Manager
-Only a very basic migration tool is included to handle database updates.
+But it has features like:
+Docker-ready setup for running unit and acceptance tests inside a WordPress container
 
-✅ Included Features
-Despite its simplicity, the project offers useful modern tooling:
+Codeception for automated testing
 
-🐳 Docker-ready — Easily launch WordPress for local testing (unit + acceptance)
+Standalone Selenium Chrome with VNC support to visually observe BDD acceptance tests in action
 
-🔁 Codeception — Pre-configured for automated test workflows
+How to develop locally
+Run:
 
-👀 Selenium Chrome with VNC — Visually observe BDD acceptance tests running in real time
-
-🛠️ Local Development
-To set up the plugin for local development:
-
-Install dependencies:
-
-bash
+go
 Copy
 Edit
 make vendors
-Copy this project into the wp-content/plugins/ directory of your WordPress setup.
+Then install the project folder inside a WordPress installation as a normal plugin.
 
-Activate the plugin via the WordPress admin panel.
+Run Automated Tests
+Run:
 
-🧪 Running Automated Tests
-Start the testing environment:
-
-bash
+go
 Copy
 Edit
 make up
-Run unit tests:
+to start the Docker testing environment, and then:
 
-bash
+go
 Copy
 Edit
 make unit
-Run acceptance (BDD) tests:
+to run unit tests
 
-bash
+go
 Copy
 Edit
 make acceptance
-update readme
+to run acceptance tests
